@@ -22,6 +22,12 @@ const routes: Array<RouteRecordRaw> = [
     component: () =>
       import(/* webpackChunkName: "profile" */ "../views/Profile.vue"),
   },
+  {
+    path: "/faunaapi",
+    name: "FaunaApi",
+    component: () =>
+      import(/* webpackChunkName: "faunaapi" */ "../views/FaunaApi.vue"),
+  },
 ];
 
 const router = createRouter({
