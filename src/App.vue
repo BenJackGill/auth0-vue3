@@ -4,10 +4,34 @@
     <router-link to="/about">About</router-link> |
     <router-link to="/profile">Profile</router-link> |
     <router-link to="/faunaapi">API</router-link> |
-    <button>LOGIN</button>
+    <button @click.prevent="login">LOGIN</button> |
+    <button @click.prevent="logout">LOGOUT</button>
   </div>
   <router-view />
 </template>
+
+<script lang="ts">
+import { defineComponent, inject } from "vue";
+export default defineComponent({
+  name: "App",
+  setup() {
+    const auth = inject("Auth");
+    const login = () => {
+      auth.loginWithRedirect();
+    };
+    const logout = () => {
+      auth.logout({
+        returnTo: window.location.origin,
+      });
+    };
+    return {
+      logout,
+      login,
+      ...auth,
+    };
+  },
+});
+</script>
 
 <style>
 #app {
