@@ -8,7 +8,7 @@ import createAuth0Client, {
   User,
 } from "@auth0/auth0-spa-js";
 import { App, Plugin, computed, reactive, watchEffect } from "vue";
-import { NavigationGuardWithThis } from "vue-router";
+import { NavigationGuard } from "vue-router";
 
 let client: Auth0Client;
 
@@ -74,11 +74,7 @@ const authPlugin = {
   logout,
 };
 
-const routeGuard: NavigationGuardWithThis<undefined> = (
-  to: any,
-  from: any,
-  next: any
-) => {
+const routeGuard: NavigationGuard = (to: any, from: any, next: any) => {
   const { isAuthenticated, loading, loginWithRedirect } = authPlugin;
 
   const verify = async () => {
@@ -154,7 +150,7 @@ async function init(options: Auth0PluginOptions): Promise<Plugin> {
 
 interface Auth0Plugin {
   init(options: Auth0PluginOptions): Promise<Plugin>;
-  routeGuard: NavigationGuardWithThis<undefined>;
+  routeGuard: NavigationGuard;
 }
 
 export const Auth0: Auth0Plugin = {
