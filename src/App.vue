@@ -1,7 +1,6 @@
 <template>
   <div id="nav">
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
     <router-link to="/profile">Profile</router-link> |
     <router-link to="/faunaapi">API</router-link> |
     <button @click.prevent="login">LOGIN</button> |
@@ -16,10 +15,10 @@ export default defineComponent({
   name: "App",
   setup() {
     const auth = inject("Auth");
-    const login = () => {
+    const login = (): void => {
       auth.loginWithRedirect();
     };
-    const logout = () => {
+    const logout = (): void => {
       auth.logout({
         returnTo: window.location.origin,
       });
