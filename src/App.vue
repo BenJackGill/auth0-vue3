@@ -3,29 +3,30 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/profile">Profile</router-link> |
     <router-link to="/faunaapi">API</router-link> |
-    <button @click.prevent="login">LOGIN</button> |
-    <button @click.prevent="logout">LOGOUT</button>
+    <button @click.prevent="auth_login">LOGIN</button> |
+    <button @click.prevent="auth_logout">LOGOUT</button>
   </div>
   <router-view />
 </template>
 
 <script lang="ts">
+import { Auth0Client } from "@auth0/auth0-spa-js";
 import { defineComponent, inject } from "vue";
 export default defineComponent({
   name: "App",
   setup() {
-    const auth = inject("Auth");
-    const login = (): void => {
+    const auth = inject<Auth0Client>("Auth")!;
+    const auth_login = () => {
       auth.loginWithRedirect();
     };
-    const logout = (): void => {
+    const auth_logout = () => {
       auth.logout({
         returnTo: window.location.origin,
       });
     };
     return {
-      logout,
-      login,
+      auth_logout,
+      auth_login,
       ...auth,
     };
   },

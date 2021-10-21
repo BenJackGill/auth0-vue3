@@ -8,12 +8,13 @@
 </template>
 
 <script lang="ts">
+import { Auth0Client } from "@auth0/auth0-spa-js";
 import { inject } from "vue";
 
 export default {
   name: "Profile",
   setup() {
-    const auth = inject("Auth");
+    const auth = inject<Auth0Client>("Auth")!;
     return {
       ...auth,
     };
