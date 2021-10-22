@@ -13,8 +13,8 @@ import { inject } from "vue";
 
 export default {
   name: "Profile",
-  setup() {
-    const auth = inject<Auth0Client>("Auth")!;
+  setup(): any {
+    const auth = inject("Auth") as Auth0Client;
     return {
       ...auth,
     };

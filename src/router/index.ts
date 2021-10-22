@@ -33,11 +33,7 @@ const router = createRouter({
 });
 
 router.beforeEach(
-  (
-    to: RouteLocationNormalized,
-    from: RouteLocationNormalized,
-    next: Function
-  ) => {
+  (to: RouteLocationNormalized, from: RouteLocationNormalized, next: any) => {
     Auth0.routeGuard(to, from, next());
   }
 );

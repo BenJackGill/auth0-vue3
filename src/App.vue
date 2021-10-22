@@ -15,7 +15,7 @@ import { defineComponent, inject } from "vue";
 export default defineComponent({
   name: "App",
   setup() {
-    const auth = inject<Auth0Client>("Auth")!;
+    const auth = inject("Auth") as Auth0Client;
     const auth_login = () => {
       auth.loginWithRedirect();
     };
