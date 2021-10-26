@@ -3,7 +3,7 @@
     <h1>This is a profile page, only logged in users can see it.</h1>
   </div>
   <div class="row">
-    {{ JSON.stringify(user, null, 2) }}
+    <pre>{{ user }}</pre>
   </div>
 </template>
 
