@@ -3,21 +3,21 @@
     <h1>This is a profile page, only logged in users can see it.</h1>
   </div>
   <div class="row">
-    {{ JSON.stringify(user, null, 2) }}
+    <pre>{{ user }}</pre>
   </div>
 </template>
 
 <script lang="ts">
-import { Auth0Client } from "@auth0/auth0-spa-js";
-import { inject } from "vue";
+import type { ProvidedAuthPlugin } from "@/auth";
+import { inject, defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   name: "Profile",
-  setup(): any {
-    const auth = inject("Auth") as Auth0Client;
+  setup() {
+    const auth = inject("Auth") as ProvidedAuthPlugin;
     return {
       ...auth,
     };
   },
-};
+});
 </script>

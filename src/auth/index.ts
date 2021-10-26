@@ -74,6 +74,8 @@ const authPlugin = {
   logout,
 };
 
+export type ProvidedAuthPlugin = typeof authPlugin;
+
 const routeGuard: NavigationGuard = (to: any, from: any, next: any) => {
   const { isAuthenticated, loading, loginWithRedirect } = authPlugin;
 
